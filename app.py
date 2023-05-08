@@ -77,6 +77,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     result = model.predict(img.reshape(1, 28, 28, 3))
     result = result[0]
     acc = result[1]
+    max_acc = max(acc)
     max_prob = max(result)
 
     if max_prob>0.80:
