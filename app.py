@@ -76,8 +76,6 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     img = cv2.resize(result_img, (28, 28))
     result = model.predict(img.reshape(1, 28, 28, 3))
     result = result[0]
-    acc = result[1]
-    max_acc = max(acc)
     max_prob = max(result)
 
     if max_prob>0.80:
@@ -87,7 +85,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
         full_name = class_name[1]
         # st.success("**Prediction:** Patient is suffering from ", full_name)
         st.error('**Prediction:** Patient is suffering from  {}'.format(full_name))
-        st.write(acc)
+    
 
     else:
         full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
