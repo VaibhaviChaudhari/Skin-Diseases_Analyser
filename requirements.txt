@@ -2,7 +2,7 @@ pip
 streamlit
 tensorflow
 keras
-socket
+sockets
 Plotly
 streamlit_lottie
 pillow
