@@ -2,6 +2,7 @@ pip
 streamlit
 tensorflow
 keras
+socket
 Plotly
 streamlit_lottie
 pillow
@@ -14,4 +15,3 @@ twilio
 libclang==13.0.0
 opencv-python
 flask==2.3.2
-socket
