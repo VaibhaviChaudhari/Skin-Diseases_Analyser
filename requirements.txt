@@ -9,6 +9,6 @@ requests
 flask
 
 twilio
-custom
+# custom
 libclang==13.0.0
 opencv-python
