@@ -24,9 +24,7 @@ from io import StringIO
 
 from pathlib import Path
 import sys
-from streamlit import secrets
-token = secrets["whatsapp"]["token"]
-account = secrets["whatsapp"]["account"]
+
 
 st.set_page_config(
     page_icon='🤝',
@@ -69,7 +67,7 @@ def load_mekd():
     img = cv2.imread('data/ISIC_0024312.jpg')
     return img
 
-def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number, token, account):
+def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
     model_name = 'models/best2_model.h5'
     model = get_model()
@@ -107,7 +105,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     # sleep(5)
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
-   
+
 
 def main():
 
@@ -222,9 +220,8 @@ def main():
                             if st.form_submit_button("Predict and Send"):
                                 input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                 result_img = image
-                                result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number, token, account)
+                                result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                 st.success("Whatsapp message sent successfully!")
-
 
 
 if __name__== "__main__":
