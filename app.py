@@ -177,7 +177,7 @@ def main():
                                 patient_name = st.text_input("Patient's Name")
                                 patient_contact_number = st.text_input("Patient's Contact Number")
                                 #doctor_name = st.text_input("Doctor's Name")
-                                doctor_name = st.multiselect('Select name', ['vaibhavi' , 'Deepak'])
+                                doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
                                 #doctor_contact_number = st.text_input("Doctor's Contact Number")
                                 doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
 
@@ -222,7 +222,7 @@ def main():
                             patient_name = st.text_input("Patient's Name")
                             patient_contact_number = st.text_input("Patient's Contact Number")
                             #doctor_name = st.selectbox('Doctor data', ['Vaibhavi', 'Deepak'], key=1)
-                            doctor_name = st.multiselect('Select name', ['vaibhavi' , 'Deepak'])
+                            doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
                             doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
                             if st.form_submit_button("Predict and Send"):
 
