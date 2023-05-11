@@ -168,7 +168,7 @@ def main():
                     result_img = load_mekd()
                     st.image(result_img, caption='Sample Image', channels="BGR", use_column_width=True)
                     st.subheader("Choose Training Algorithm!")
-                    if st.checkbox('Keras'):
+                    if st.checkbox('model1'):
                         model = get_model()
                     
                         st.success("Hooray !! Keras Model Loaded!")
