@@ -69,7 +69,7 @@ def load_mekd():
 
 def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
-    model_name = 'models/best2_model.h5'
+    model_name = 'models/best_model_sorted.h5'
     model = get_model()
     model.load_weights(model_name)
     classes = {4: ('nv', ' melanocytic nevi'), 6: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
