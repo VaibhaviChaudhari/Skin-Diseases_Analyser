@@ -224,6 +224,7 @@ def main():
                             #doctor_name = st.selectbox('Doctor data', ['Vaibhavi', 'Deepak'], key=1)
                             doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
                             doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
+
                             if st.form_submit_button("Predict and Send"):
 
                                 input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
