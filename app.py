@@ -116,10 +116,10 @@ def main():
 
     if choice == "Info":
 
+        
+        st.title('Skin cancer Analyser')
+        st.markdown('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
         st_lottie(lottie_anime_json, key = "hello")
-        st.header('Skin cancer Analyser')
-        st.subheader('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
-
     elif choice == "About Us":
                     # front end elements of the web page 
         html_temp = """ 
