@@ -148,7 +148,7 @@ def main():
         """
         # display the front end aspect
         img1 = Image.open(ROOT / 'html_images/kjsce_header.jpeg')
-        img2 = Image.open(ROOT / 'html_images/names.jpeg')
+        img2 = Image.open(ROOT / 'html_images/names1.jpeg')
         
         st.image(img1, width=704)
         st.markdown(html_temp, unsafe_allow_html = True) 
