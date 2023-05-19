@@ -117,8 +117,8 @@ def main():
     if choice == "Info":
 
         st_lottie(lottie_anime_json, key = "hello")
-        st.sidebar.header('Skin cancer Analyser')
-        st.sidebar.subheader('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
+        st.header('Skin cancer Analyser')
+        st.subheader('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
 
     elif choice == "About Us":
                     # front end elements of the web page 
