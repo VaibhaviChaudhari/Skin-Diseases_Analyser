@@ -119,6 +119,23 @@ def main():
         
         st.title('Skin cancer Analyser')
         st.markdown('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
+        st.header("Instructions")
+        st.markdown("""
+        Welcome to the Skin Analyzer App! Here's how you can use it:
+
+        1. **Sample Image Prediction**: Choose a sample image to get predictions for common skin diseases.
+        2. **Upload Your Skin Image**: Upload your own skin image to analyze and obtain disease predictions.
+        3. **Prediction Results**: View the results of the disease prediction, including the disease name and confidence level.
+        4. **WhatsApp Communication**: Stay connected with your doctor by receiving prediction details via WhatsApp.
+        5. **Real-Time Analysis**: Experience immediate feedback with real-time analysis of your skin image.
+        6. **User-Friendly Interface**: Enjoy a user-friendly interface with easy navigation options.
+        7. **Privacy and Security**: Rest assured that your privacy and security are our top priorities.
+        8. **Future Enhancements**: Stay tuned for future updates and enhancements to the app.
+
+        Feel free to explore the different features and functionalities of the app. If you have any questions or need assistance, don't hesitate to reach out to our support team.
+
+        Let's get started!
+         """)
         st_lottie(lottie_anime_json, key = "hello")
     elif choice == "About Us":
                     # front end elements of the web page 
