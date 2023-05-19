@@ -111,16 +111,16 @@ def main():
 
     # Initialize the session state variable if it doesn't exist yet
 
-    menu = ["Home", "Info", "App"]
+    menu = ["About Us", "Info", "App"]
     choice = st.sidebar.selectbox("Select a page", menu)
 
-    if choice == "Home":
+    if choice == "Info":
 
         st_lottie(lottie_anime_json, key = "hello")
+        st.sidebar.header('Skin cancer Analyser')
+        st.sidebar.subheader('The Skin Analyzer app is a web-based application designed to analyze skin images and provide predictions and classifications for various skin diseases. The app offers a user-friendly interface with multiple functionalities to enhance the user experience. ')
 
-        
-
-    elif choice == "Info":
+    elif choice == "About Us":
                     # front end elements of the web page 
         html_temp = """ 
         <div style ="background-color:white;padding:13px"> 
