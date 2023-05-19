@@ -135,6 +135,8 @@ def main():
         Feel free to explore the different features and functionalities of the app. If you have any questions or need assistance, don't hesitate to reach out to our support team.
 
         Let's get started!
+
+        Go to the select page option to the extream left sidebar of the page and choose app option to get started
          """)
         st_lottie(lottie_anime_json, key = "hello")
     elif choice == "About Us":
