@@ -106,8 +106,9 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
-def Skin_detect(result_img):
+def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
+
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
@@ -123,27 +124,27 @@ def Skin_detect(result_img):
         short_name = class_name[0]
         full_name = class_name[1]
         # st.success("**Prediction:** Patient is suffering from ", full_name)
-        st.error('**Prediction:** Patient skin is  {}'.format(full_name))
+        st.error('**Prediction:** Patient is suffering from  {}'.format(full_name))
     
 
     else:
         full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
         st.success('**Prediction:** Patients Skin is Healthy, No Disease detected')
         
-    # #whatsapp message
-    # message = '''
-    # Patient Name: {}
-    # Doctor Name: {}
-    # Disease Name : {}
-    # Confidence: {}
+    #whatsapp message
+    message = '''
+    Patient Name: {}
+    Doctor Name: {}
+    Disease Name : {}
+    Confidence: {}
 
-    # '''.format(patient_name, doctor_name, full_name, max_prob)
+    '''.format(patient_name, doctor_name, full_name, max_prob)
     
-    # #send whatsapp mesage to patient
-    # whatsapp_message(token, account, patient_contact_number, message)
-    # # sleep(5)
-    # whatsapp_message(token, account, doctor_contact_number, message)
-    # return 'Success'
+    #send whatsapp mesage to patient
+    whatsapp_message(token, account, patient_contact_number, message)
+    # sleep(5)
+    whatsapp_message(token, account, doctor_contact_number, message)
+    return 'Success'
 
 def main():
 
