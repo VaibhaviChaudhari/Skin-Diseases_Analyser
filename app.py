@@ -121,33 +121,8 @@ def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, d
     # print(result)
     max_prob = max(result)
     # print(max_prob)
-    if result[0][0]<0.50:
-        # class_ind = list(result).index(max_prob)
-        # class_name = classes[class_ind]
-        # short_name = class_name[0]
-        full_name = classes[0]
-        print('Skin is diseased')
     
-
-    else:
-        full_name = classes[1]
-        print('Skin is Healthy, No Disease detected')
-
-
-    #whatsapp message
-    message = '''
-    Patient Name: {}
-    Doctor Name: {}
-    Disease Name : {}
-    Confidence: {}
-
-    '''.format(patient_name, doctor_name, full_name, max_prob)
-    
-    #send whatsapp mesage to patient
-    whatsapp_message(token, account, patient_contact_number, message)
-    # sleep(5)
-    whatsapp_message(token, account, doctor_contact_number, message)
-    return 'Success'
+    return result
 
 def main():
 
@@ -247,6 +222,32 @@ def main():
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     result = Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     st.success("Whatsapp message sent successfully!")
+                                    if result[0][0]<0.50:
+                                        # class_ind = list(result).index(max_prob)
+                                        # class_name = classes[class_ind]
+                                        # short_name = class_name[0]
+                                        full_name = classes[0]
+                                        print('Skin is diseased')
+                                    
+                                
+                                    else:
+                                        full_name = classes[1]
+                                        print('Skin is Healthy, No Disease detected')
+
+
+                                    #whatsapp message
+                                    message = '''
+                                    Patient Name: {}
+                                    Doctor Name: {}
+                                    Disease Name : {}
+                                    Confidence: {}
+
+                                    '''.format(patient_name, doctor_name, full_name, max_prob)
+    
+                                    #send whatsapp mesage to patient
+                                    whatsapp_message(token, account, patient_contact_number, message)
+                                    # sleep(5)
+                                    whatsapp_message(token, account, doctor_contact_number, message)
                         
                     if st.checkbox('model1'):
                         model = get_model()
