@@ -217,11 +217,11 @@ def main():
 
                                 if st.form_submit_button("Predict and Send"):
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    result = disease_detect(result_img)
+                                    result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     st.success("Whatsapp message sent successfully!")
                                     # if result[0][0]<0.50:
                                     #     # class_ind = list(result).index(max_prob)
-                                    #     # class_name = classes[class_ind]
+                                    #     # class_name = classes[class_ind]patient_name, patient_contact_number, doctor_name, doctor_contact_number
                                     #     # short_name = class_name[0]
                                     #     #full_name = classes[0]
                                     #     print('Skin is diseased')
@@ -246,7 +246,7 @@ def main():
 
                                 if st.form_submit_button("Predict and Send"):
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                                    result = disease_detect(result_img, )
                                     st.success("Whatsapp message sent successfully!")
 
         if page == "Upload Your Skin Image":
