@@ -110,8 +110,7 @@ def Skin_detect(result_img):
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
-      #classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
-    
+
     result = model.predict(result_img.reshape(1, 28, 28, 3))
 
     if result[0][0]<0.50:
@@ -120,7 +119,7 @@ def Skin_detect(result_img):
     else:
         st.success('Skin is Healthy, No Disease detected')
 
-    st.write(result)
+    # st.wite(result)
     return 'Success'
 
 def main():
@@ -210,7 +209,7 @@ def main():
                         st.success("Hooray !! Detection Model Loaded!")
                         if st.checkbox("Predict"):
                             result = Skin_detect(result_img)
-                            st.success(result)
+                            st.success("Success")
                         
                     if st.checkbox('model1'):
                         model = get_model()
