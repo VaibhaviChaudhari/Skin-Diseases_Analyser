@@ -119,18 +119,18 @@ def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, d
     result = model.predict(img.reshape(1, 28, 28, 3))
     # result = result[0]
     # print(result)
-    # max_prob = max(result)
+    max_prob = max(result)
     # print(max_prob)
     if result[0][0]<0.50:
         # class_ind = list(result).index(max_prob)
         # class_name = classes[class_ind]
         # short_name = class_name[0]
-        # full_name = class_name[1]
+        full_name = classes[0]
         print('Skin is diseased')
     
 
     else:
-      
+        full_name = classes[1]
         print('Skin is Healthy, No Disease detected')
 
 
