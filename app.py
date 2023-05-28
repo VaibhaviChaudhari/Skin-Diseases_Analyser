@@ -106,6 +106,29 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
+def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
+  
+    model_name = 'models/skin_disease_model.h5'
+    model = get_model()
+    model.load_weights(model_name)
+    #classes = {6: ('nv', ' melanocytic nevi'), 4: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
+    # img = cv2.resize(result_img, (28, 28))
+    # result = model.predict(img.reshape(1, 28, 28, 3))
+    # result = result[0]
+    # max_prob = max(result)
+
+    image = cv2.imread(result_img)
+    image = cv2.resize(image, (128, 128))
+    image = np.expand_dims(image, axis=0)
+    image = image / 255.0
+    # Perform prediction using the trained model
+    prediction = model.predict(image)
+    predicted_class = "Diseased" if prediction[0][0] > 0.5 else "Healthy"
+
+    # Display the input image and prediction result
+    st.image(result_img, caption="Input Image", use_column_width=True)
+    st.write("Prediction:", predicted_class)
+
 
 def main():
 
@@ -187,6 +210,25 @@ def main():
                     result_img = load_mekd()
                     st.image(result_img, caption='Sample Image', channels="BGR", use_column_width=True)
                     st.subheader("Choose Training Algorithm!")
+                    
+                    if st.checkbox('Detection'):
+                        model = get_model()
+                    
+                        st.success("Hooray !! Detection Model Loaded!")
+                        if st.checkbox('Enter Doctor & Patients Details'):
+                            with st.form("Details form"):
+                                patient_name = st.text_input("Patient's Name")
+                                patient_contact_number = doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)#st.text_input("Patient's Contact Number")
+                                # doctor_name = st.text_input("Doctor's Name")
+                                doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
+                                #doctor_contact_number = st.text_input("Doctor's Contact Number")
+                                doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
+
+                                if st.form_submit_button("Predict and Send"):
+                                    input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                                    result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                                    st.success("Whatsapp message sent successfully!")
+
                     if st.checkbox('model1'):
                         model = get_model()
                     
