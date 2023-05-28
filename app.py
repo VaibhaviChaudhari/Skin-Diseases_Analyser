@@ -231,19 +231,19 @@ def main():
                         model = get_model()
                     
                         st.success("Hooray !! Detection Model Loaded!")
-                        # if st.checkbox('Enter Doctor & Patients Details'):
-                        #     with st.form("Details form"):
-                        #         patient_name = st.text_input("Patient's Name")
-                        #         patient_contact_number = st.text_input("Patient's Contact Number")
-                        #         # doctor_name = st.text_input("Doctor's Name")
-                        #         doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
-                        #         #doctor_contact_number = st.text_input("Doctor's Contact Number")
-                        #         doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
+                        if st.checkbox('Enter Doctor & Patients Details'):
+                            with st.form("Details form"):
+                                patient_name = st.text_input("Patient's Name")
+                                patient_contact_number = st.text_input("Patient's Contact Number")
+                                # doctor_name = st.text_input("Doctor's Name")
+                                doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
+                                #doctor_contact_number = st.text_input("Doctor's Contact Number")
+                                doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
 
-                        # if st.form_submit_button("Predict and Send"):
-                        #     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                        result = Skin_detect(result_img)
-                        #     st.success("Whatsapp message sent successfully!")
+                        if st.form_submit_button("Predict and Send"):
+                            input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                        result = Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                        st.success("Whatsapp message sent successfully!")
                         
                     if st.checkbox('model1'):
                         model = get_model()
