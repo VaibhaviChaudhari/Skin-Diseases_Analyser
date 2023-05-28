@@ -108,27 +108,42 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
 
 def Skin_detect(result_img):
   
-    model_name = 'models/skin_disease_model.h5'
+    model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
-    #classes = {6: ('nv', ' melanocytic nevi'), 4: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
-    # img = cv2.resize(result_img, (28, 28))
-    # result = model.predict(img.reshape(1, 28, 28, 3))
-    # result = result[0]
-    # max_prob = max(result)
+    classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
+    img = cv2.resize(result_img, (28, 28))
+    result = model.predict(img.reshape(1, 28, 28, 3))
+    result = result[0]
+    max_prob = max(result)
 
-    image = cv2.imread(result_img)
-    image = cv2.resize(image, (128, 128))
-    image = np.expand_dims(image, axis=0)
-    image = image / 255.0
-    # Perform prediction using the trained model
-    prediction = model.predict(image)
-    predicted_class = "Diseased" if prediction[0][0] > 0.5 else "Healthy"
+    if max_prob>0.80:
+        class_ind = list(result).index(max_prob)
+        class_name = classes[class_ind]
+        short_name = class_name[0]
+        full_name = class_name[1]
+        # st.success("**Prediction:** Patient is suffering from ", full_name)
+        st.error('**Prediction:** Patient skin is  {}'.format(full_name))
+    
 
-    # Display the input image and prediction result
-    st.image(result_img, caption="Input Image", use_column_width=True)
-    st.write("Prediction:", predicted_class)
+    else:
+        full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
+        st.success('**Prediction:** Patients Skin is Healthy, No Disease detected')
+        
+    # #whatsapp message
+    # message = '''
+    # Patient Name: {}
+    # Doctor Name: {}
+    # Disease Name : {}
+    # Confidence: {}
 
+    # '''.format(patient_name, doctor_name, full_name, max_prob)
+    
+    # #send whatsapp mesage to patient
+    # whatsapp_message(token, account, patient_contact_number, message)
+    # # sleep(5)
+    # whatsapp_message(token, account, doctor_contact_number, message)
+    # return 'Success'
 
 def main():
 
