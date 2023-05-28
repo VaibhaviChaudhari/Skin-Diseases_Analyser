@@ -106,7 +106,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
-def Skin_detect(result_img):
+def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
 
     # model_name = 'models/skin2_disease_model.h5'
@@ -143,6 +143,20 @@ def Skin_detect(result_img):
           st.success('Skin is Healthy, No Disease detected')
           return 'Skin is not diseased'
       
+       #whatsapp message
+    message = '''
+    Patient Name: {}
+    Doctor Name: {}
+    Disease Name : {}
+    Confidence: {}
+
+    '''.format(patient_name, doctor_name, 0, 1)
+    
+    #send whatsapp mesage to patient
+    whatsapp_message(token, account, patient_contact_number, message)
+    # sleep(5)
+    whatsapp_message(token, account, doctor_contact_number, message)
+    return 'Success'
 def main():
 
     # Initialize the session state variable if it doesn't exist yet
@@ -239,7 +253,7 @@ def main():
 
                                 if st.form_submit_button("Predict and Send"):
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    result = Skin_detect(result_img)
+                                    result = Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     st.success(result)
                                     # if result[0][0]<0.50:
                                     #     # class_ind = list(result).index(max_prob)
