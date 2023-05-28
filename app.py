@@ -209,7 +209,7 @@ def main():
                         model = get_model()
                     
                         st.success("Hooray !! Detection Model Loaded!")
-                        if st.form_submit_button("Predict"):
+                        if st.button("Predict"):
                             result = Skin_detect(result_img)
                             st.success("Success")
                         
