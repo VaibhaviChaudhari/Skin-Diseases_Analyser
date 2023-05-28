@@ -253,6 +253,14 @@ def main():
                 st.image(img_array, channels="BGR", caption='Uploaded Image',
                         use_column_width=True)
                 st.subheader("Choose Training Algorithm!")
+                if st.checkbox('Detection'):
+                        model = get_model()
+                        result_img = image
+                        st.success("Hooray !! Detection Model Loaded!")
+                        if st.button("Predict"):
+                            result = Skin_detect(result_img)
+                            st.success("Success")
+
                 if st.checkbox('Keras'):
                     model = get_model()
                     st.success("Hooray !! Keras Model Loaded!")
