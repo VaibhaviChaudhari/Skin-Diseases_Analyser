@@ -110,8 +110,8 @@ def Skin_detect(result_img):
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
-
-    result = model.predict(result_img.reshape(1, 28, 28, 3))
+    img = cv2.resize(result_img, (28, 28))
+    result = model.predict(img.reshape(1, 28, 28, 3))
 
     if result[0][0]<0.50:
         st.error('Skin is diseased')
