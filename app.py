@@ -122,7 +122,6 @@ def Skin_detect(result_img):
     else:
         st.success('Skin is Healthy, No Disease detected')
 
-    # st.wite(result)
     return 'Success'
 
 def main():
@@ -210,7 +209,7 @@ def main():
                         model = get_model()
                     
                         st.success("Hooray !! Detection Model Loaded!")
-                        if st.checkbox("Predict"):
+                        if st.form_submit_button("Predict"):
                             result = Skin_detect(result_img)
                             st.success("Success")
                         
