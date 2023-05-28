@@ -106,8 +106,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
-def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
-  
+def Skin_detect(result_img):
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
@@ -115,36 +114,13 @@ def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, d
     
     result = model.predict(result_img.reshape(1, 28, 28, 3))
 
-      # result = result[0]
-      # print(result)
-      # max_prob = max(result)
-      # print(max_prob)
     if result[0][0]<0.50:
-          # class_ind = list(result).index(max_prob)
-          # class_name = classes[class_ind]
-          # short_name = class_name[0]
-          # full_name = class_name[1]
         st.error('Skin is diseased')
-        # return 'Skin is diseased'
           
     else:
-        
         st.success('Skin is Healthy, No Disease detected')
-        # return 'Skin is not diseased'
-      
-    #whatsapp message
-    message = '''
-    Patient Name: {}
-    Doctor Name: {}
-    Disease Name : {}
-    Confidence: {}
 
-    '''.format(patient_name, doctor_name, 0, 1)
-    
-    #send whatsapp mesage to patient
-    whatsapp_message(token, account, patient_contact_number, message)
-    # sleep(5)
-    whatsapp_message(token, account, doctor_contact_number, message)
+    st.write(result)
     return 'Success'
 
 def main():
@@ -232,30 +208,9 @@ def main():
                         model = get_model()
                     
                         st.success("Hooray !! Detection Model Loaded!")
-                        if st.checkbox('Enter Doctor & Patients Details'):
-                            with st.form("Details form"):
-                                patient_name = st.text_input("Patient's Name")
-                                patient_contact_number = st.text_input("Patient's Contact Number")
-                                # doctor_name = st.text_input("Doctor's Name")
-                                doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
-                                #doctor_contact_number = st.text_input("Doctor's Contact Number")
-                                doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
-
-                                if st.form_submit_button("Predict and Send"):
-                                    input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    result = Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    st.success(result)
-                                    # if result[0][0]<0.50:
-                                    #     # class_ind = list(result).index(max_prob)
-                                    #     # class_name = classes[class_ind]patient_name, patient_contact_number, doctor_name, doctor_contact_number
-                                    #     # short_name = class_name[0]
-                                    #     #full_name = classes[0]
-                                    #     print('Skin is diseased')
-                                
-                                    # else:
-                                    #     #full_name = classes[1]
-                                    #     print('Skin is Healthy, No Disease detected')
-
+                        if st.form_submit_button("Predict"):
+                            result = Skin_detect(result_img)
+                            st.success(result)
                         
                     if st.checkbox('model1'):
                         model = get_model()
