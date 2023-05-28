@@ -113,34 +113,25 @@ def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, d
     model = get_model()
     model.load_weights(model_name)
     classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
-    img = cv2.resize(result_img, (28, 28))
+    input_image_path = '/content/drive/MyDrive/ham/HAM10000_images_part_2/ISIC_0029306.jpg'
+    img = cv2.imread(input_image_path)
+    img = cv2.resize(img, (28, 28))
     result = model.predict(img.reshape(1, 28, 28, 3))
     # result = result[0]
+    # print(result)
     # max_prob = max(result)
-
-    # if max_prob>0.80:
-    #     class_ind = list(result).index(max_prob)
-    #     class_name = classes[class_ind]
-    #     short_name = class_name[0]
-    #     full_name = class_name[1]
-    #     # st.success("**Prediction:** Patient is suffering from ", full_name)
-    #     st.error('**Prediction:** Patient is suffering from  {}'.format(full_name))
+    # print(max_prob)
+    if result[0][0]<0.50:
+        # class_ind = list(result).index(max_prob)
+        # class_name = classes[class_ind]
+        # short_name = class_name[0]
+        # full_name = class_name[1]
+        print('Skin is diseased')
     
 
-    # else:
-    #     full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
-    #     st.success('**Prediction:** Patients Skin is Healthy, No Disease detected')
-        
-    # input_image = cv2.resize(input_image, (28, 28))
-    # input_image = np.expand_dims(input_image, axis=0)
-    # input_image = input_image / 255.0
-
-    # # Perform prediction using the trained model
-    # prediction = model.predict(input_image)
-    predicted_class = "diseased" if result[0][0] < 0.5 else "healthy"
-
-    # Print the prediction result
-    print("The input image is predicted as:", predicted_class)
+    else:
+      
+        print('Skin is Healthy, No Disease detected')
 
 def main():
 
