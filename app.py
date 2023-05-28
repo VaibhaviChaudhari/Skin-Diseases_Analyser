@@ -133,6 +133,22 @@ def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, d
       
         print('Skin is Healthy, No Disease detected')
 
+
+    #whatsapp message
+    message = '''
+    Patient Name: {}
+    Doctor Name: {}
+    Disease Name : {}
+    Confidence: {}
+
+    '''.format(patient_name, doctor_name, full_name, max_prob)
+    
+    #send whatsapp mesage to patient
+    whatsapp_message(token, account, patient_contact_number, message)
+    # sleep(5)
+    whatsapp_message(token, account, doctor_contact_number, message)
+    return 'Success'
+
 def main():
 
     # Initialize the session state variable if it doesn't exist yet
