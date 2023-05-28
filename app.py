@@ -106,7 +106,7 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
-def Skin_detect(result_img):
+def Skin_detect(result_img,patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
 
     model_name = 'models/skin2_disease_model.h5'
@@ -217,7 +217,7 @@ def main():
 
                                 if st.form_submit_button("Predict and Send"):
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
-                                    result = disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
+                                    result = Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     st.success("Whatsapp message sent successfully!")
                                     # if result[0][0]<0.50:
                                     #     # class_ind = list(result).index(max_prob)
