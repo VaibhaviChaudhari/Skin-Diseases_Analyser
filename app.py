@@ -136,12 +136,13 @@ def Skin_detect(result_img):
           # short_name = class_name[0]
           # full_name = class_name[1]
           st.error('Skin is diseased')
-      
+          return 'Skin is diseased'
 
       else:
         
           st.success('Skin is Healthy, No Disease detected')
-      return result
+          return 'Skin is not diseased'
+      
 def main():
 
     # Initialize the session state variable if it doesn't exist yet
