@@ -111,7 +111,7 @@ def Skin_detect(result_img):
 
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
-    model.load(model_name)
+    model.load_weights(model_name)
     classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
     result = model.predict(result_img.reshape(1, 28, 28, 3))
     # result = result[0]
