@@ -109,17 +109,38 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
 def Skin_detect(result_img):
   
 
-    model_name = 'models/skin2_disease_model.h5'
-    model = get_model()
-    model.load_weights(model_name)
-    classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
-    result = model.predict(result_img.reshape(1, 28, 28, 3))
-    # result = result[0]
-    # print(result)
-    max_prob = max(result)
-    # print(max_prob)
+    # model_name = 'models/skin2_disease_model.h5'
+    # model = get_model()
+    # model.load_weights(model_name)
+    # classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
+    # result = model.predict(result_img.reshape(1, 28, 28, 3))
+    # # result = result[0]
+    # # print(result)
+    # max_prob = max(result)
+    # # print(max_prob)
+
+    def Skin_detect(result_img):
+      model_name = 'models/skin2_disease_model.h5'
+      model = get_model()
+      model.load_weights(model_name)
+      classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
     
-    return result
+      result = model.predict(result_img.reshape(1, 28, 28, 3))
+      # result = result[0]
+      # print(result)
+      # max_prob = max(result)
+      # print(max_prob)
+      if result[0][0]<0.50:
+          # class_ind = list(result).index(max_prob)
+          # class_name = classes[class_ind]
+          # short_name = class_name[0]
+          # full_name = class_name[1]
+          st.error('Skin is diseased')
+      
+
+      else:
+        
+          st.success('Skin is Healthy, No Disease detected')
 
 def main():
 
