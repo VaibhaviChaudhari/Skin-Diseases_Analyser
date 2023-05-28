@@ -14,6 +14,7 @@ import requests
 from streamlit_lottie import st_lottie
 from streamlit_lottie import st_lottie_spinner
 import streamlit.components.v1 as components
+from keras import models
 #custom
 from custom.credentials import token, account
 from custom.essentials import stringToRGB, get_model
@@ -109,8 +110,9 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
 def Skin_detect(result_img):
     
     model_name = 'models/skin2_disease_model.h5'
-    model = get_model()
-    model.load_weights(model_name)
+    model = get_model1()
+    model = models.load_model(model_name)
+
     img = cv2.resize(result_img, (28, 28))
     result = model.predict(img.reshape(1, 28, 28, 3))
 

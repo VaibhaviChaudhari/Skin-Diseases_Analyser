@@ -26,3 +26,16 @@ def get_model():
   model.add(Dense(7, activation='softmax'))
   return model
 
+def get_model1():
+  model = Sequential()
+  model.add(Conv2D(16, kernel_size=(3, 3), input_shape=(28, 28, 3), activation='relu', padding='same'))
+  model.add(Conv2D(32, kernel_size=(3, 3), activation='relu'))
+  model.add(MaxPool2D(pool_size=(2, 2)))
+  model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', padding='same'))
+  model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))
+  model.add(MaxPool2D(pool_size=(2, 2), padding='same'))
+  model.add(Flatten())
+  model.add(Dense(64, activation='relu'))
+  model.add(Dense(32, activation='relu'))
+  model.add(Dense(2, activation='softmax'))
+  return model
