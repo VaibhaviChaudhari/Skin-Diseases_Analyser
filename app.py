@@ -107,20 +107,22 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     return 'Success'
 
 def Skin_detect(result_img):
+
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
+    classes = {0: ('HAM10000_images_part_2', ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
     img = cv2.resize(result_img, (28, 28))
     result = model.predict(img.reshape(1, 28, 28, 3))
+    result = result[0]
 
-    if result[0][0]<0.50:
-        st.error('Skin is diseased')
-          
+    if result>0.5:
+
+        st.error('**Prediction:** Patient is suffering')
+    
+
     else:
-        st.success('Skin is Healthy, No Disease detected')
-
-    # st.wite(result)
-    return 'Success'
+        st.success('**Prediction:** Patients Skin is Healthy')
 
 def main():
 
