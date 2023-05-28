@@ -26,7 +26,7 @@ def get_model():
   model.add(Dense(7, activation='softmax'))
   return model
 
-def get_model1():
+def get_models():
   model = Sequential()
   model.add(Conv2D(16, kernel_size=(3, 3), input_shape=(28, 28, 3), activation='relu', padding='same'))
   model.add(Conv2D(32, kernel_size=(3, 3), activation='relu'))
