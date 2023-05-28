@@ -67,45 +67,104 @@ def load_mekd():
     img = cv2.imread('data/ISIC_0024312.jpg')
     return img
 
-def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
+# def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
   
-    model_name = 'models/best_model_sorted_200.h5'
-    model = get_model()
-    model.load_weights(model_name)
-    classes = {4: ('nv', ' melanocytic nevi'), 6: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
+#     model_name = 'models/best_model_sorted_200.h5'
+#     model = get_model()
+#     model.load_weights(model_name)
+#     classes = {6: ('nv', ' melanocytic nevi'), 4: ('mel', 'melanoma'), 2 :('bkl', 'benign keratosis-like lesions'), 1:('bcc' , ' basal cell carcinoma'), 5: ('vasc', ' pyogenic granulomas and hemorrhage'), 0: ('akiec', 'Actinic keratoses and intraepithelial carcinomae'),  3: ('df', 'dermatofibroma')}
+#     img = cv2.resize(result_img, (28, 28))
+#     result = model.predict(img.reshape(1, 28, 28, 3))
+#     result = result[0]
+#     max_prob = max(result)
+
+#     if max_prob>0.80:
+#         class_ind = list(result).index(max_prob)
+#         class_name = classes[class_ind]
+#         short_name = class_name[0]
+#         full_name = class_name[1]
+#         # st.success("**Prediction:** Patient is suffering from ", full_name)
+#         st.error('**Prediction:** Patient is suffering from  {}'.format(full_name))
+    
+
+#     else:
+#         full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
+#         st.success('**Prediction:** Patients Skin is Healthy, No Disease detected')
+        
+#     #whatsapp message
+#     message = '''
+#     Patient Name: {}
+#     Doctor Name: {}
+#     Disease Name : {}
+#     Confidence: {}
+
+#     '''.format(patient_name, doctor_name, full_name, max_prob)
+    
+#     #send whatsapp mesage to patient
+#     whatsapp_message(token, account, patient_contact_number, message)
+#     # sleep(5)
+#     whatsapp_message(token, account, doctor_contact_number, message)
+#     return 'Success'
+
+
+def disease_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
+    model_name1 = 'models/skin_disease_model.h5'  # Model for detecting healthy or diseased skin
+    model_name2 = 'models/best_model_sorted_200.h5'  # Model for disease classification
+
+    model1 = get_model()
+    model1.load_weights(model_name1)
+    classes1 = {0: 'Healthy', 1: 'Diseased'}
+
     img = cv2.resize(result_img, (28, 28))
-    result = model.predict(img.reshape(1, 28, 28, 3))
+    result = model1.predict(img.reshape(1, 28, 28, 3))
     result = result[0]
     max_prob = max(result)
 
-    if max_prob>0.80:
-        class_ind = list(result).index(max_prob)
-        class_name = classes[class_ind]
-        short_name = class_name[0]
-        full_name = class_name[1]
-        # st.success("**Prediction:** Patient is suffering from ", full_name)
-        st.error('**Prediction:** Patient is suffering from  {}'.format(full_name))
-    
+    if max_prob > 0.5:  # Adjust the threshold as needed
+        class_ind = np.argmax(result)
+        class_name = classes1[class_ind]
+
+        if class_name == 'Healthy':
+            st.success('Skin is healthy!')
+        else:
+            model2 = load_model(model_name2)  # Load the model for disease classification
+
+            img2 = cv2.resize(result_img, (image_size))  # Resize the image as required by the second model
+            img2 = img2 / 255.0  # Normalize the image
+
+            result2 = model2.predict(np.expand_dims(img2, axis=0))
+            predicted_class = np.argmax(result2)
+
+            # Mapping class index to actual class labels from the HAM10000 dataset
+            classes2 = {
+                0: 'akiec',  # Actinic keratoses and intraepithelial carcinomae
+                1: 'bcc',  # Basal cell carcinoma
+                2: 'bkl',  # Benign keratosis-like lesions
+                3: 'df',  # Dermatofibroma
+                4: 'mel',  # Melanoma
+                5: 'nv',  # Melanocytic nevi
+                6: 'vasc'  # Vascular lesions (Pyogenic granulomas and hemorrhage)
+            }
+
+            class_name = classes2[predicted_class]
+            st.error('**Prediction:** Patient is suffering from {}'.format(class_name))
+
+            # WhatsApp message
+            message = '''
+            Patient Name: {}
+            Doctor Name: {}
+            Disease Name: {}
+
+            '''.format(patient_name, doctor_name, class_name)
+
+            # Send WhatsApp message to patient
+            whatsapp_message(token, account, patient_contact_number, message)
+            # Send WhatsApp message to doctor
+            whatsapp_message(token, account, doctor_contact_number, message)
 
     else:
-        full_name = 'No Disease' #if confidence is less than 80 percent then "No disease" 
-        st.success('**Prediction:** Patients Skin is Healthy, No Disease detected')
-        
-    #whatsapp message
-    message = '''
-    Patient Name: {}
-    Doctor Name: {}
-    Disease Name : {}
-    Confidence: {}
-
-    '''.format(patient_name, doctor_name, full_name, max_prob)
-    
-    #send whatsapp mesage to patient
-    whatsapp_message(token, account, patient_contact_number, message)
-    # sleep(5)
-    whatsapp_message(token, account, doctor_contact_number, message)
-    return 'Success'
-
+        st.error('Unable to determine skin condition. Please try again.')
+        return 'Success'
 
 def main():
 
