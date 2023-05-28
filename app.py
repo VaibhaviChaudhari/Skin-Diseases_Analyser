@@ -106,17 +106,14 @@ def disease_detect(result_img, patient_name, patient_contact_number, doctor_name
     whatsapp_message(token, account, doctor_contact_number, message)
     return 'Success'
 
-def Skin_detect(result_img, patient_name, patient_contact_number, doctor_name, doctor_contact_number):
+def Skin_detect(result_img):
   
 
     model_name = 'models/skin2_disease_model.h5'
     model = get_model()
     model.load_weights(model_name)
     classes = { 0:('HAM10000_images_part_2' , ' Diseased'), 1: ('FOCAL_1', 'Healthy')}
-    input_image_path = '/content/drive/MyDrive/ham/HAM10000_images_part_2/ISIC_0029306.jpg'
-    img = cv2.imread(input_image_path)
-    img = cv2.resize(img, (28, 28))
-    result = model.predict(img.reshape(1, 28, 28, 3))
+    result = model.predict(result_img.reshape(1, 28, 28, 3))
     # result = result[0]
     # print(result)
     max_prob = max(result)
