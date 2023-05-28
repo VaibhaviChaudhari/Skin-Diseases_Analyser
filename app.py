@@ -141,7 +141,7 @@ def Skin_detect(result_img):
       else:
         
           st.success('Skin is Healthy, No Disease detected')
-
+      return result
 def main():
 
     # Initialize the session state variable if it doesn't exist yet
@@ -239,7 +239,7 @@ def main():
                                 if st.form_submit_button("Predict and Send"):
                                     input_validation(patient_name, patient_contact_number, doctor_name, doctor_contact_number)
                                     result = Skin_detect(result_img)
-                                    st.success("Whatsapp message sent successfully!")
+                                    st.success(result)
                                     # if result[0][0]<0.50:
                                     #     # class_ind = list(result).index(max_prob)
                                     #     # class_name = classes[class_ind]patient_name, patient_contact_number, doctor_name, doctor_contact_number
