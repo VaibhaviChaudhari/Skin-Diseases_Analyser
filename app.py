@@ -68,7 +68,7 @@ page_bg_img = '''
 <style>
 .stApp {
   background-image: url("https://img.freepik.com/premium-photo/hand-holding-black-ribbon-white-background-with-copy-space-symbol-skin-cancer-awareness-concept_54178-2380.jpg");
-  background-size: cover;
+  background-size: container;
   backdrop-filter: blur(5px); 
 }
 </style>
