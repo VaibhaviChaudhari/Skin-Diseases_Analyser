@@ -66,10 +66,11 @@ lottie_predicting_json = load_lottie_url(predicting)
 
 page_bg_img = '''
 <style>
-body {
-background-image: url("https://s3.amazonaws.com/utep-uploads/wp-content/uploads/online-regis-college/2018/03/12110152/RCMSN-Oct-1.jpg");
-background-size: cover;
+.stApp {
+  background-image: url("https://s3.amazonaws.com/utep-uploads/wp-content/uploads/online-regis-college/2018/03/12110152/RCMSN-Oct-1.jpg");
+  background-size: cover;
 }
+</style>
 </style>
 '''
 
