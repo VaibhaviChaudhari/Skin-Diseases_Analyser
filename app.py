@@ -64,6 +64,23 @@ predicting = "https://assets5.lottiefiles.com/private_files/lf30_jbhavmow.json"
 lottie_anime_json = load_lottie_url(lottie_animation_1)
 lottie_predicting_json = load_lottie_url(predicting) 
 
+def add_bg_from_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fskin-cancer-awareness&psig=AOvVaw3wHUmJhze0ZED0pFtGTMbB&ust=1685407679462000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDn_4inmf8CFQAAAAAdAAAAABAY.jpg");
+             background-attachment: fixed;
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+add_bg_from_url()
+
+
 def load_mekd():
     img = cv2.imread('data/ISIC_0024312.jpg')
     return img
@@ -259,6 +276,7 @@ def main():
                         st.success("Hooray !! Detection Model Loaded!")
                         if st.button("Predict"):
                             result = Skin_detect(result_img)
+                            if result = 
                             st.success("Success")
 
                 if st.checkbox('Keras'):
