@@ -67,7 +67,7 @@ lottie_predicting_json = load_lottie_url(predicting)
 page_bg_img = '''
 <style>
 .stApp {
-  background-image: url("https://www.nfcr.org/wp-content/uploads/2020/05/SKin-Cancer-Awareness-Ribbon.png");
+  background-image: url("https://cf.ltkcdn.net/dying/images/orig/265658-1600x1030-black-ribbon-meanings.jpg");
   background-size: cover;
   backdrop-filter: blur(5px); 
 }
