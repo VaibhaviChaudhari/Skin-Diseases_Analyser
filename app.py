@@ -67,7 +67,7 @@ lottie_predicting_json = load_lottie_url(predicting)
 page_bg_img = '''
 <style>
 .stApp {
-  background-image: url("https://img.freepik.com/premium-photo/hands-with-black-ribbon_54178-2427.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2019/04/24/11/27/flowers-4151900_960_720.jpg");
   background-size: cover;
 }
 </style>
