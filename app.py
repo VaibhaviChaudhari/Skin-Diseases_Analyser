@@ -67,7 +67,7 @@ lottie_predicting_json = load_lottie_url(predicting)
 page_bg_img = '''
 <style>
 .stApp {
-  background-image: url("https://t4.ftcdn.net/jpg/04/08/79/67/240_F_408796788_EzOpnQbPZuNpQbFFXyWEz48emIq6gFmk.jpg");
+  background-image: url("https://images.pexels.com/photos/7756765/pexels-photo-7756765.jpeg");
   background-size: cover;
 }
 </style>
