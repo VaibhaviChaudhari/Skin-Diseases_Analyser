@@ -64,21 +64,17 @@ predicting = "https://assets5.lottiefiles.com/private_files/lf30_jbhavmow.json"
 lottie_anime_json = load_lottie_url(lottie_animation_1)
 lottie_predicting_json = load_lottie_url(predicting) 
 
-def add_bg_from_url():
-    st.markdown(
-         f"""
-         <style>
-         .stApp {{
-             background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fskin-cancer-awareness&psig=AOvVaw3wHUmJhze0ZED0pFtGTMbB&ust=1685407679462000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJDn_4inmf8CFQAAAAAdAAAAABAY.jpg");
-             background-attachment: fixed;
-             background-size: cover
-         }}
-         </style>
-         """,
-         unsafe_allow_html=True
-     )
+page_bg_img = '''
+<style>
+body {
+background-image: url("https://s3.amazonaws.com/utep-uploads/wp-content/uploads/online-regis-college/2018/03/12110152/RCMSN-Oct-1.jpg");
+background-size: cover;
+}
+</style>
+'''
 
-add_bg_from_url()
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 
 
 def load_mekd():
