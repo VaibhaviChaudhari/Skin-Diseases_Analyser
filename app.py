@@ -67,13 +67,13 @@ lottie_predicting_json = load_lottie_url(predicting)
 page_bg_img = '''
 <style>
 .stApp {
-  background-image: url("https://s3.amazonaws.com/utep-uploads/wp-content/uploads/online-regis-college/2018/03/12110152/RCMSN-Oct-1.jpg");
+  background-image: url("https://t4.ftcdn.net/jpg/04/34/24/53/360_F_434245321_WHoTLh9DmzYYqaKcZKyiG3r3HbizX3Ht.jpg");
   background-size: cover;
 }
 </style>
 </style>
 '''
-
+#https://s3.amazonaws.com/utep-uploads/wp-content/uploads/online-regis-college/2018/03/12110152/RCMSN-Oct-1.jpg
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 def load_mekd():
