@@ -69,6 +69,7 @@ page_bg_img = '''
 .stApp {
   background-image: url("https://www.nfcr.org/wp-content/uploads/2020/05/SKin-Cancer-Awareness-Ribbon.png");
   background-size: cover;
+  filter: blur(5px); 
 }
 </style>
 </style>
