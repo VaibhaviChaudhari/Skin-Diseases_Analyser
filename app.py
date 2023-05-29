@@ -234,7 +234,7 @@ def main():
                                 patient_name = st.text_input("Patient's Name")
                                 patient_contact_number = st.text_input("Patient's Contact Number")
                                 # doctor_name = st.text_input("Doctor's Name")
-                                doctor_name = st.selectbox('Select name', ['vaibhavi' , 'Deepak'])
+                                doctor_name = st.selectbox('Select name', ['vaibhavi'])
                                 #doctor_contact_number = st.text_input("Doctor's Contact Number")
                                 doctor_contact_number = st.selectbox('Doctor Number', ['+917715987005', '+918097129725'], key=1)
 
