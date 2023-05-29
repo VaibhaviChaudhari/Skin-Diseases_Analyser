@@ -259,7 +259,6 @@ def main():
                         st.success("Hooray !! Detection Model Loaded!")
                         if st.button("Predict"):
                             result = Skin_detect(result_img)
-                            if result = 
                             st.success("Success")
 
                 if st.checkbox('Keras'):
