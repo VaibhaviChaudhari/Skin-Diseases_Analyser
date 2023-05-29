@@ -67,8 +67,8 @@ lottie_predicting_json = load_lottie_url(predicting)
 page_bg_img = '''
 <style>
 .stApp {
-  background-image: url("https://img.freepik.com/premium-photo/hand-holding-black-ribbon-white-background-with-copy-space-symbol-skin-cancer-awareness-concept_54178-2380.jpg");
-  background-size: container;
+  background-image: url("https://t3.ftcdn.net/jpg/04/25/66/14/360_F_425661447_QcO3L93Xu5krYKrGAXc9MdrL0nbFwv0D.jpg");
+  background-size: cover;
   backdrop-filter: blur(5px); 
 }
 </style>
