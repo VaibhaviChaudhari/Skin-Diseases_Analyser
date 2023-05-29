@@ -68,7 +68,7 @@ page_bg_img = '''
 <style>
 .stApp {
   background-image: url("https://t3.ftcdn.net/jpg/04/25/66/14/360_F_425661447_QcO3L93Xu5krYKrGAXc9MdrL0nbFwv0D.jpg");
-  background-size: auto;
+  background-size: contain;
 }
 </style>
 </style>
